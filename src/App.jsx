@@ -5,9 +5,11 @@ import Cart from './pages/Cart'
 import Orders from './pages/Orders'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Product from './pages/Product'
 import Collection from './pages/Collection'
 import NavBar from './components/NavBar'
 import { Route, Routes } from 'react-router-dom'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -21,6 +23,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/collection" element={<Collection />} />
+        <Route path="/product/:id" element={<Product />} />
         <Route path="*" element={<div style={{
           display:'flex',
           alignItems:'center',
@@ -28,6 +31,7 @@ const App = () => {
           marginTop:'25%'
         }}>404 - Page Not Found</div>} />
       </Routes>
+      <Footer />
     </div>
   )
 }

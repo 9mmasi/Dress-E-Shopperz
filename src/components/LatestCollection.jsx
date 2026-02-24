@@ -1,6 +1,7 @@
 import React, {  useContext, useEffect } from 'react'
 import { shopContext } from '../context/ShopContext'
 import Title from './Title'
+import ProductItem from './ProductItem'
 const LatestCollection = () => {
     const [latestProducts,setLatestProducts] = React.useState([])
     const {products,currencySymbol} = useContext(shopContext)
@@ -15,15 +16,15 @@ const LatestCollection = () => {
         <p className='subtitle-text'>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry.
         </p>
-        {latestProducts.map((product) => (
-          <div key={product.id}>
-            <p>{product.name}</p>
-            <p>{currencySymbol}{product.price}</p>
-          </div>
-        ))}
+        
       </div>
 
       {/* Product Grid would go here */}
+      <div className="product-grid">
+        {latestProducts.map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))}
+    </div>
     </div>
   )
 }
