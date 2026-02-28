@@ -15,7 +15,7 @@ const BestSeller = () => {
   <div className="best-sellers-header">
     <Title text1={'BEST'} text2={'SELLERS'} />
     
-    <p class="best-sellers-desc">
+    <p className="best-sellers-desc">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
       Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
     </p>
@@ -23,7 +23,7 @@ const BestSeller = () => {
    {/* Product Grid would go here */}
       <div className="product-grid">
         {bestSellers.map((product) => (
-          <ProductItem key={product.id} product={product} />
+          <ProductItem key={product._id} product={product} />
         ))}
     </div>
 </section>

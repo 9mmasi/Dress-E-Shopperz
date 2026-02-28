@@ -4,7 +4,7 @@ import Title from './Title'
 import ProductItem from './ProductItem'
 const LatestCollection = () => {
     const [latestProducts,setLatestProducts] = React.useState([])
-    const {products,currencySymbol} = useContext(shopContext)
+    const {products} = useContext(shopContext)
     useEffect(() => {
         setLatestProducts(products.slice(0,10))
         
@@ -22,7 +22,7 @@ const LatestCollection = () => {
       {/* Product Grid would go here */}
       <div className="product-grid">
         {latestProducts.map((product) => (
-          <ProductItem key={product.id} product={product} />
+          <ProductItem key={product._id} product={product} />
         ))}
     </div>
     </div>

@@ -559,3 +559,138 @@ body {
   font-size: 0.875rem;
   color: #4b5563;
 }
+
+/* Layout & Container */
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem; /* gap-1 */
+  padding-top: 2.5rem; /* pt-10 */
+  border-top: 1px solid #e5e7eb; /* border-t */
+}
+
+/* Responsive: Row layout on screens > 640px */
+@media (min-width: 640px) {
+  .filter-container {
+    flex-direction: row;
+    gap: 2.5rem; /* sm:gap-10 */
+  }
+}
+
+.filter-sidebar {
+  min-width: 15rem; /* min-w-60 (60 * 0.25rem) */
+}
+
+.filter-title {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+/* Category Box */
+.category-box {
+  border: 1px solid #d1d5db; /* border-gray-300 */
+  padding-left: 1.25rem; /* pl-5 */
+  padding-top: 0.75rem; /* py-3 */
+  padding-bottom: 0.75rem;
+  margin-top: 1.5rem; /* mt-6 */
+}
+
+.category-box.hidden {
+  display: none;
+}
+
+.category-header {
+  margin-bottom: 0.75rem; /* mb-3 */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+}
+
+/* Checkbox Styling */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* gap-2 */
+  font-size: 0.875rem;
+  font-weight: 300; /* font-light */
+  color: #374151; /* text-gray-700 */
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox-item input {
+  width: 0.75rem; /* w-3 */
+  cursor: pointer;
+}
+/* Base style for the icon (Mobile/Small screens) */
+.filter-title img {
+  width: 12px;  /* Smaller size for mobile */
+  height: auto;
+  transition: transform 0.3s ease; /* Smooth rotation if you decide to animate it */
+}
+
+/* Bigger screen adjustment (640px and up) */
+@media (min-width: 640px) {
+  .filter-title img {
+    width: 20px; /* Larger size for desktop */
+    /* You can also hide the icon on desktop if it's only meant for mobile toggle */
+    /* display: none; */ 
+  }
+}
+
+/* Optional: Rotate icon when filter is shown/hidden */
+/* You would need to add a conditional class in React like: 
+   className={`dropdown-icon ${showFilter ? 'rotate' : ''}`} */
+.dropdown-icon.rotate {
+  transform: rotate(90deg);
+}
+/* Container for the right side */
+.right-side-container {
+  flex: 1; /* flex-1 */
+}
+
+/* Header row containing Title and Sort */
+.collection-header {
+  display: flex;
+  justify-content: space-between; /* justify-between */
+  align-items: center;
+  margin-bottom: 1rem; /* mb-4 (4 * 0.25rem) */
+  font-size: 1rem; /* text-base */
+}
+
+/* Responsive font size for the header */
+@media (min-width: 640px) {
+  .collection-header {
+    font-size: 1.5rem; /* sm:text-2xl */
+  }
+}
+
+/* Sort Dropdown styling */
+.sort-dropdown {
+  border: 2px solid #d1d5db; /* border-2 border-gray-300 */
+  font-size: 0.875rem; /* text-sm */
+  padding-left: 0.5rem; /* px-2 */
+  padding-right: 0.5rem;
+  height: fit-content;
+  outline: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Small screen adjustment for dropdown if needed */
+@media (max-width: 400px) {
+  .collection-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
