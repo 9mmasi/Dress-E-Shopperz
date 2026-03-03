@@ -10,11 +10,13 @@ import Collection from './pages/Collection'
 import NavBar from './components/NavBar'
 import { Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
+import Searchbar from './components/Searchbar'
 
 const App = () => {
   return (
     <div className='container'>
       <NavBar />
+      <Searchbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -28,7 +30,10 @@ const App = () => {
           display:'flex',
           alignItems:'center',
           justifyContent:'center',
-          marginTop:'25%'
+          marginTop:'10rem',
+          textAlign:'center',
+          fontSize:'2rem',
+          fontWeight:'bold'
         }}>404 - Page Not Found</div>} />
       </Routes>
       <Footer />

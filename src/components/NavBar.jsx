@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { assets } from '../assets/assets'
 import { Link, NavLink } from 'react-router-dom'
+import { shopContext } from '../context/ShopContext';
 
 const NavBar = () => {
   const [visible, setVisible] = useState(false);
+  const{showSearch, setShowSearch} = useContext(shopContext)
 
   return (
     <div className="navbar-wrapper">
@@ -19,7 +21,7 @@ const NavBar = () => {
         </ul>
 
         <div className="nav-container">
-          <img src={assets.search_icon} className="icon" alt="Search" />
+          <img onClick={() => setShowSearch(!showSearch)} src={assets.search_icon} className="icon" alt="Search" />
 
           <div className="profile-group">
             <img src={assets.profile_icon} className="icon" alt="Profile" />

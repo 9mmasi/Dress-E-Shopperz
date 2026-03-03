@@ -10,6 +10,7 @@ const Collection = () => {
   const [Category, setCategory] = React.useState([])
   const [Type, setType] = React.useState([])
   const[sortType, setSortType] = React.useState('relevant')
+  const{searchTerm,showSearch}= useContext(shopContext)
   const toggleCategory=(e)=>{
     if(Category.includes(e.target.value)){
       setCategory(Category.filter((item) => item !== e.target.value))
@@ -30,6 +31,9 @@ const Collection = () => {
   const applyFilterAndSort = () => {
     let productsCopy = products.slice();
   // 1. Apply Filtering
+    if(searchTerm&&showSearch){
+      productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    }
     if (Category.length > 0) {
       productsCopy = productsCopy.filter(item => Category.includes(item.category));
     }
@@ -52,7 +56,7 @@ const Collection = () => {
   }
   useEffect(() => {
     applyFilterAndSort();
-  },[Category, Type,sortType])
+  },[Category, Type,sortType,searchTerm,showSearch])
   return (
     <div className="filter-container">
       {/* Filter Options */}
