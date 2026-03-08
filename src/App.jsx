@@ -11,6 +11,7 @@ import NavBar from './components/NavBar'
 import { Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import Searchbar from './components/Searchbar'
+import { CartProvider } from 'use-shopping-cart';
 
 const App = () => {
   return (

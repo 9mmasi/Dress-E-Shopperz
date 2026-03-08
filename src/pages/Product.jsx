@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { shopContext } from '../context/ShopContext';
+import RelatedProducts from '../components/RelataedProducts';
+import { useShoppingCart } from 'use-shopping-cart';
 
 const Product = () => {
   const { id } = useParams();
   const { products } = useContext(shopContext);
   const [product, setProduct] = useState(null);
+  const { addItem } = useShoppingCart();
   
-  // 1. STATE FOR MAIN IMAGE (NEW)
   const [mainImage, setMainImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
 
@@ -15,11 +17,35 @@ const Product = () => {
     const foundProduct = products.find(item => item._id === id);
     setProduct(foundProduct);
     
-    // 2. SET INITIAL MAIN IMAGE
     if (foundProduct && foundProduct.image && foundProduct.image.length > 0) {
       setMainImage(foundProduct.image[0]);
     }
   }, [id, products]);
+
+  // --- UPDATED ADD TO CART LOGIC ---
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      alert("Please select a size first!");
+      return;
+    }
+
+    // Create a unique ID combining product ID and size
+    // This prevents adding 10 separate items; it increments quantity instead
+    const cartItemId = `${product._id}-${selectedSize}`;
+
+    addItem({
+      name: product.name,
+      id: cartItemId, // The unique key for the cart
+      price: product.price,
+      currency: 'USD',
+      image: mainImage,
+      // Metadata allows us to display the size in the Cart UI later
+      product_data: {
+        size: selectedSize,
+        category: product.category
+      }
+    });
+  };
 
   if (!product) return <div className="loading-state">Loading...</div>;
 
@@ -27,35 +53,30 @@ const Product = () => {
     <div className="product-page-container">
       <div className="product-wrapper">
         
-        {/* --- LEFT: Image Gallery Section (NEW LAYOUT) --- */}
+        {/* LEFT: Image Gallery */}
         <div className="gallery-section">
-          
-          {/* Thumbnails List */}
           <div className="thumbnail-list">
             {product.image.map((img, index) => (
               <img 
                 key={index} 
                 src={img} 
                 alt={`${product.name} view ${index + 1}`} 
-                // 3. CLICK TO UPDATE MAIN IMAGE
                 onClick={() => setMainImage(img)}
-                // Dynamic active border class
                 className={`thumbnail-item ${img === mainImage ? 'active' : ''}`}
               />
             ))}
           </div>
 
-          {/* Main (Active) Image Container */}
           <div className="main-image-container">
             <img 
-              src={mainImage} // Displays the current selected image
+              src={mainImage} 
               alt={product.name} 
               className="main-product-image"
             />
           </div>
         </div>
 
-        {/* --- RIGHT: Details Section (Unchanged) --- */}
+        {/* RIGHT: Details Section */}
         <div className="details-section">
           <h1 className="product-title">{product.name}</h1>
           
@@ -66,9 +87,7 @@ const Product = () => {
             )}
           </div>
 
-          <p className="product-desc">
-            {product.description}
-          </p>
+          <p className="product-desc">{product.description}</p>
 
           <hr className="divider" />
 
@@ -88,7 +107,8 @@ const Product = () => {
             </div>
           </div>
 
-          <button className="add-to-cart-btn">
+          {/* UPDATED BUTTON CALL */}
+          <button onClick={handleAddToCart} className="add-to-cart-btn">
             Add to Cart
           </button>
 
@@ -99,6 +119,20 @@ const Product = () => {
           </div>
         </div>
       </div>
+
+      <div className="description-review-section">
+        <div className="tab-header">
+          <b className="tab-item active">Description</b>
+          <p className="tab-item">Reviews (122)</p>
+        </div>
+        
+        <div className="tab-content">
+          <p>An e-commerce website is an online platform that facilitates buying and selling...</p>
+          <p>Each product usually has its own dedicated page with relevant information.</p>
+        </div>
+      </div>
+
+      <RelatedProducts category={product.category} subCategory={product.subCategory} />
     </div>
   );
 };

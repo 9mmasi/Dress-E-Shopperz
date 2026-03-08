@@ -927,3 +927,153 @@ body {
   padding: 40px;
   text-align: center;
 }
+/* Description & Review Tabs Section */
+.description-review-section {
+  margin-top: 80px; /* Space between product details and tabs */
+}
+
+.tab-header {
+  display: flex;
+}
+
+.tab-item {
+  border: 1px solid #e5e7eb;
+  padding: 15px 25px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Specific styling for the active tab to match your image */
+.tab-item.active {
+  font-weight: 700;
+}
+
+/* The content box below the tabs */
+.tab-content {
+  border: 1px solid #e5e7eb;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 0.875rem;
+  color: #4b5563; /* Gray 600 */
+  line-height: 1.6;
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 640px) {
+  .tab-content {
+    padding: 20px;
+  }
+  .tab-item {
+    padding: 10px 15px;
+  }
+}
+
+/* Related Products Section */
+.related-products-section {
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+.related-title {
+  text-align: center;
+  font-size: 2rem;
+  padding: 40px 0;
+}
+
+.related-title h2 span {
+  color: #4b5563; /* Gray 600 */
+  font-weight: 300;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+  gap: 20px;
+  row-gap: 30px;
+}
+
+/* 4 columns on Tablet, 5 on Desktop */
+@media (min-width: 768px) {
+  .related-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (min-width: 1024px) {
+  .related-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+.product-card {
+  cursor: pointer;
+  color: #374151;
+}
+
+.card-image-wrapper {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.card-image-wrapper img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+.card-name {
+  font-size: 0.875rem;
+  padding-bottom: 4px;
+}
+
+.card-price {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.cart-layout {
+  display: flex;
+  gap: 40px;
+  flex-direction: row;
+}
+
+.cart-items-section {
+  flex: 2;
+}
+
+.cart-summary-section {
+  flex: 1;
+}
+
+.cart-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item-info {
+  display: flex;
+  gap: 15px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .cart-layout {
+    flex-direction: column;
+  }
+}
